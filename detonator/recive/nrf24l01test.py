@@ -34,15 +34,7 @@ def slave(nrf):
             if got == 1:
                 led.value(1)
                 mosfet.value(1)  # Turn on MOSFET
-                
-                # Send a response back to the master
-                nrf.stop_listening()
-                try:
-                    nrf.send(struct.pack("i", got))
-                    print("Response sent")
-                except OSError:
-                    print("Response lost")
-                
+                                
                 # Keep the MOSFET on for 5 seconds
                 utime.sleep(5)
                 mosfet.value(0)  # Turn off MOSFET
